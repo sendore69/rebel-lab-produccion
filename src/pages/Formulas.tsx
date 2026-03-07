@@ -120,15 +120,15 @@ export default function Formulas() {
     };
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">Fórmulas y Costos</h1>
-                    <p className="text-gray-500 mt-1">Administra recetas, procesos y costos de fabricación.</p>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Fórmulas y Costos</h1>
+                    <p className="text-gray-500 mt-1">Administra recetas y costos de fabricación.</p>
                 </div>
                 <button
                     onClick={openNewModal}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors shadow-sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 md:py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors shadow-sm w-full md:w-auto"
                 >
                     <Plus className="w-5 h-5" />
                     Nueva Fórmula
@@ -136,18 +136,18 @@ export default function Formulas() {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
-                <div className="p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
-                    <div className="relative w-96">
+                <div className="p-4 border-b border-gray-200 bg-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="relative w-full md:w-96">
                         <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                         <input
                             type="text"
                             placeholder="Buscar fórmula..."
-                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
-                    <div className="text-sm text-gray-500 font-medium">
+                    <div className="text-sm text-gray-500 font-medium hidden md:block">
                         Total: {filteredFormulas.length} fórmulas
                     </div>
                 </div>
@@ -216,13 +216,13 @@ export default function Formulas() {
                                     </div>
 
                                     {isExpanded && (
-                                        <div className="px-6 pb-6 pt-2 bg-gray-50/50 border-t border-gray-100">
-                                            <div className="grid grid-cols-3 gap-6">
-                                                <div className="col-span-2">
+                                        <div className="px-4 md:px-6 pb-6 pt-2 bg-gray-50/50 border-t border-gray-100">
+                                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                <div className="lg:col-span-2">
                                                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                                        Ingredientes <span className="text-xs font-normal text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full">Por 1 Litro</span>
+                                                        Ingredientes <span className="text-xs font-normal text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full whitespace-nowrap">Por 1 Litro</span>
                                                     </h4>
-                                                    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                                                    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden overflow-x-auto">
                                                         <table className="w-full text-sm text-left">
                                                             <thead className="bg-gray-50 border-b border-gray-200 text-gray-600">
                                                                 <tr>
@@ -237,13 +237,13 @@ export default function Formulas() {
                                                                         ? ((ing.cantidad_g_l / 1000) * ing.materia_prima.precio_unitario)
                                                                         : 0;
                                                                     return (
-                                                                        <tr key={ing.id} className="hover:bg-gray-50">
+                                                                        <tr key={ing.id} className="hover:bg-gray-50 text-[13px] md:text-sm">
                                                                             <td className="px-4 py-2 font-medium text-gray-800">
                                                                                 {ing.materia_prima?.nombre || 'Desconocido'}
-                                                                                <span className="block text-xs text-gray-500 font-mono">{ing.materia_prima?.codigo}</span>
+                                                                                <span className="block text-[10px] text-gray-500 font-mono">{ing.materia_prima?.codigo}</span>
                                                                             </td>
-                                                                            <td className="px-4 py-2 text-gray-600">{ing.cantidad_g_l} g</td>
-                                                                            <td className="px-4 py-2 font-medium text-gray-900">${cost.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
+                                                                            <td className="px-4 py-2 text-gray-600 whitespace-nowrap">{ing.cantidad_g_l} g</td>
+                                                                            <td className="px-4 py-2 font-medium text-gray-900">${cost.toLocaleString(undefined, { maximumFractionDigits: 1 })}</td>
                                                                         </tr>
                                                                     );
                                                                 })}
@@ -252,13 +252,13 @@ export default function Formulas() {
                                                     </div>
                                                 </div>
 
-                                                <div>
+                                                <div className="lg:col-span-1">
                                                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                                                         <FileText className="w-4 h-4 text-gray-500" />
                                                         Proceso de Fabricación
                                                     </h4>
-                                                    <div className="bg-yellow-50/50 rounded-lg p-4 border border-yellow-100 text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
-                                                        {formula.instrucciones_proceso || 'No hay instrucciones documentadas para este proceso.'}
+                                                    <div className="bg-amber-50 rounded-lg p-4 border border-amber-100 text-[13px] leading-relaxed text-amber-900 whitespace-pre-wrap">
+                                                        {formula.instrucciones_proceso || 'No hay instrucciones documentadas.'}
                                                     </div>
                                                 </div>
                                             </div>

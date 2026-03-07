@@ -146,10 +146,10 @@ export default function CalculadoraProduccion() {
     }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
-            <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+            <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">Producción</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Producción</h1>
                     <p className="text-gray-500 mt-1">
                         {activeTab === 'calculadora'
                             ? 'Calcula y registra requerimientos para un lote de producción.'
@@ -161,8 +161,8 @@ export default function CalculadoraProduccion() {
                     <button
                         onClick={() => setActiveTab('calculadora')}
                         className={`px-4 py-2 font-medium rounded-md flex items-center gap-2 transition-colors ${activeTab === 'calculadora'
-                                ? 'bg-white text-blue-700 shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-blue-700 shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         <Calculator className="w-4 h-4" />
@@ -171,8 +171,8 @@ export default function CalculadoraProduccion() {
                     <button
                         onClick={() => setActiveTab('historial')}
                         className={`px-4 py-2 font-medium rounded-md flex items-center gap-2 transition-colors ${activeTab === 'historial'
-                                ? 'bg-white text-blue-700 shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-blue-700 shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         <History className="w-4 h-4" />
@@ -250,9 +250,9 @@ export default function CalculadoraProduccion() {
                                         onClick={handleRegistrarLote}
                                         disabled={isSaving || !selectedFormula}
                                         className={`w-full text-white font-medium py-3 rounded-lg shadow-sm flex items-center justify-center gap-2 transition-colors ${isSaving ? 'bg-blue-400 cursor-not-allowed' :
-                                                saveStatus === 'success' ? 'bg-green-600 hover:bg-green-700' :
-                                                    saveStatus === 'error' ? 'bg-red-600 hover:bg-red-700' :
-                                                        'bg-blue-600 hover:bg-blue-700'
+                                            saveStatus === 'success' ? 'bg-green-600 hover:bg-green-700' :
+                                                saveStatus === 'error' ? 'bg-red-600 hover:bg-red-700' :
+                                                    'bg-blue-600 hover:bg-blue-700'
                                             }`}
                                     >
                                         {isSaving ? (
@@ -308,21 +308,21 @@ export default function CalculadoraProduccion() {
 
                                                 return (
                                                     <tr key={ing.id} className="transition-colors hover:bg-indigo-50/30">
-                                                        <td className="px-6 py-4">
-                                                            <span className="font-medium text-gray-900 block">{ing.materia_prima?.nombre || 'Desconocido'}</span>
+                                                        <td className="px-4 md:px-6 py-4">
+                                                            <span className="font-medium text-gray-900 block text-sm md:text-base">{ing.materia_prima?.nombre || 'Desconocido'}</span>
                                                             <span className="text-xs text-gray-500 font-mono">{ing.materia_prima?.codigo}</span>
                                                         </td>
-                                                        <td className="px-6 py-4 text-right">
-                                                            <div className="flex justify-end items-center gap-2">
-                                                                <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                                                        <td className="px-4 md:px-6 py-4 text-right">
+                                                            <div className="flex flex-col md:flex-row justify-end items-end md:items-center gap-1 md:gap-2">
+                                                                <span className="text-[10px] md:text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded whitespace-nowrap">
                                                                     Base: {ing.cantidad_g_l}g/L
                                                                 </span>
-                                                                <ArrowRight className="w-3 h-3 text-gray-300" />
-                                                                <span className="font-bold text-indigo-700 text-lg">{displayQty}</span>
+                                                                <ArrowRight className="w-3 h-3 text-gray-300 hidden md:block" />
+                                                                <span className="font-bold text-indigo-700 text-base md:text-lg">{displayQty}</span>
                                                             </div>
                                                         </td>
-                                                        <td className="px-6 py-4 text-right font-medium text-gray-700">
-                                                            ${estimatedCost.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                                                        <td className="px-4 md:px-6 py-4 text-right font-medium text-gray-700 text-sm md:text-base">
+                                                            ${estimatedCost.toLocaleString(undefined, { maximumFractionDigits: 1 })}
                                                         </td>
                                                     </tr>
                                                 );

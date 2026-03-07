@@ -188,10 +188,10 @@ export default function MateriasPrimas() {
     );
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">Materias Primas e Inventario</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Materias Primas e Inventario</h1>
                     <p className="text-gray-500 mt-1">Gestiona los insumos, costos y existencias.</p>
                 </div>
                 <button
@@ -200,7 +200,7 @@ export default function MateriasPrimas() {
                         setEditingId(null);
                         setIsModalOpen(true);
                     }}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors shadow-sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 md:py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors shadow-sm w-full md:w-auto"
                 >
                     <Plus className="w-5 h-5" />
                     Nueva Materia Prima
@@ -209,18 +209,18 @@ export default function MateriasPrimas() {
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                 {/* Toolbar */}
-                <div className="p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
-                    <div className="relative w-96">
+                <div className="p-4 border-b border-gray-200 bg-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="relative w-full md:w-96">
                         <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                         <input
                             type="text"
-                            placeholder="Buscar por código, nombre o proveedor..."
-                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                            placeholder="Buscar código, nombre..."
+                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
-                    <div className="text-sm text-gray-500 font-medium">
+                    <div className="text-sm text-gray-500 font-medium hidden md:block">
                         Total: {filteredMaterias.length} items
                     </div>
                 </div>

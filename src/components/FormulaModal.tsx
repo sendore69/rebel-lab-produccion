@@ -197,14 +197,15 @@ export default function FormulaModal({ isOpen, onClose, onSave, formula, materia
                             ) : (
                                 <div className="space-y-3">
                                     {ingredientes.map((ing, index) => (
-                                        <div key={index} className="flex gap-4 items-start">
+                                        <div key={index} className="flex flex-col md:flex-row gap-3 md:gap-4 p-4 md:p-0 bg-gray-50 md:bg-transparent rounded-lg md:rounded-none relative">
                                             <div className="flex-1">
+                                                <label className="block text-[10px] font-bold text-gray-400 uppercase md:hidden mb-1">Materia Prima</label>
                                                 <select
                                                     value={ing.materia_prima_id || ''}
                                                     onChange={(e) => handleIngredientChange(index, 'materia_prima_id', e.target.value)}
-                                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                                                 >
-                                                    <option value="">Seleccione una materia prima</option>
+                                                    <option value="">Seleccionar...</option>
                                                     {materiasPrimas.map(mp => (
                                                         <option key={mp.id} value={mp.id}>
                                                             {mp.codigo} - {mp.nombre}
@@ -212,17 +213,18 @@ export default function FormulaModal({ isOpen, onClose, onSave, formula, materia
                                                     ))}
                                                 </select>
                                             </div>
-                                            <div className="w-40 flex-shrink-0">
+                                            <div className="w-full md:w-40 flex-shrink-0">
+                                                <label className="block text-[10px] font-bold text-gray-400 uppercase md:hidden mb-1">Cantidad (g/L)</label>
                                                 <div className="relative">
                                                     <input
                                                         type="number"
                                                         step="any"
                                                         value={ing.cantidad_g_l || ''}
                                                         onChange={(e) => handleIngredientChange(index, 'cantidad_g_l', e.target.value)}
-                                                        className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                        className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                                                         placeholder="0.00"
                                                     />
-                                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">
+                                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
                                                         g
                                                     </span>
                                                 </div>
@@ -230,10 +232,10 @@ export default function FormulaModal({ isOpen, onClose, onSave, formula, materia
                                             <button
                                                 type="button"
                                                 onClick={() => handleRemoveIngredient(index)}
-                                                className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-0.5 flex-shrink-0"
+                                                className="absolute -top-2 -right-2 md:relative md:top-0 md:right-0 p-1.5 md:p-2 bg-white md:bg-transparent border md:border-0 border-red-100 text-red-500 hover:bg-red-50 rounded-full md:rounded-lg transition-colors md:mt-0.5 flex-shrink-0 shadow-sm md:shadow-none"
                                                 title="Eliminar ingrediente"
                                             >
-                                                <Trash2 className="w-5 h-5" />
+                                                <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
                                             </button>
                                         </div>
                                     ))}
